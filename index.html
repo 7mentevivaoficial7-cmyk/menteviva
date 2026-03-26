@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenteViva</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #000;
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
+
+/* BACKGROUND */
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #7b6fd6, #f7b384);
+  z-index: -2;
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.3), transparent);
+}
+
+/* SCREENS */
+.screen {
+  display: none;
+  height: 100%;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 32px;
+  margin: 20px 0;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+/* BUTTON */
+.button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 30px;
+  border: none;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.primary {
+  background: linear-gradient(90deg, #ff9a8b, #ff6a88);
+}
+
+.secondary {
+  background: rgba(255,255,255,0.3);
+}
+
+/* MOOD */
+.mood {
+  padding: 14px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.3);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* CHAT */
+.chat-box {
+  background: rgba(255,255,255,0.3);
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="bg"></div>
+
+<!-- EXPLORAR -->
+<div id="home" class="screen active">
+  <div class="header">
+    <div class="logo">❤️ MenteViva</div>
+    <div class="title">Explorar</div>
+  </div>
+
+  <div class="card" onclick="goMood()">Relaxar ›</div>
+  <div class="card">Respirar ›</div>
+  <div class="card" onclick="goDiary()">Refletir ›</div>
+
+  <button class="button primary" onclick="goMood()">Avaliar meu humor</button>
+  <button class="button secondary">Encontrar ajuda</button>
+</div>
+
+<!-- HUMOR -->
+<div id="mood" class="screen">
+  <div class="header">
+    <div class="logo">❤️ MenteViva</div>
+    <div class="title">Como você está hoje?</div>
+  </div>
+
+  <div class="mood" onclick="sendMood('triste')">😢 Triste</div>
+  <div class="mood" onclick="sendMood('ansioso')">😟 Ansioso</div>
+  <div class="mood" onclick="sendMood('normal')">🙂 Normal</div>
+  <div class="mood" onclick="sendMood('bem')">😊 Bem</div>
+  <div class="mood" onclick="sendMood('muito bem')">😁 Muito bem</div>
+
+  <button class="button secondary" onclick="goHome()">Voltar</button>
+</div>
+
+<!-- CHAT -->
+<div id="chat" class="screen">
+  <div class="header">
+    <div class="logo">❤️ MenteViva</div>
+  </div>
+
+  <div class="chat-box" id="chatText"></div>
+
+  <input placeholder="Digite uma mensagem...">
+
+  <button class="button primary" onclick="goHome()">Voltar</button>
+</div>
+
+<!-- DIÁRIO -->
+<div id="diary" class="screen">
+  <div class="header">
+    <div class="logo">❤️ MenteViva</div>
+    <div class="title">Meu Diário</div>
+  </div>
+
+  <div class="chat-box">
+    <textarea style="width:100%; height:200px; border:none; background:transparent; color:white;" placeholder="Escreva como você se sentiu hoje..."></textarea>
+  </div>
+
+  <button class="button primary">Salvar</button>
+  <button class="button secondary" onclick="goHome()">Voltar</button>
+</div>
+
+</div>
+
+<script>
+function switchScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goMood(){ switchScreen('mood'); }
+function goHome(){ switchScreen('home'); }
+function goDiary(){ switchScreen('diary'); }
+
+function sendMood(mood){
+  let text = "Oi! Estou aqui com você 💜\n\n";
+
+  if(mood==="triste"){
+    text += "Sinto muito que você esteja triste. Quer me contar o que aconteceu?";
+  } else if(mood==="ansioso"){
+    text += "Ansiedade pode ser difícil... vamos respirar juntos?";
+  } else {
+    text += "Que bom saber! Vamos manter esse sentimento 💫";
+  }
+
+  document.getElementById("chatText").innerText = text;
+  switchScreen("chat");
+}
+</script>
+
+</body>
+</html>
