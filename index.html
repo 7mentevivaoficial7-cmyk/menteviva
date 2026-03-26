@@ -24,61 +24,70 @@ height:100vh;
 position:relative;
 overflow:hidden;
 color:#fff;
-display:flex;
-flex-direction:column;
-align-items:center;
 padding:20px;
 }
 
-/* FUNDO */
+/* FUNDO PREMIUM */
 .bg{
 position:absolute;
 width:100%;
 height:100%;
-background:linear-gradient(180deg,#6a5af9,#ffb6a3);
-z-index:-2;
+background:linear-gradient(180deg,#5f4fd6,#ffb384);
+z-index:-3;
 }
 
-/* NUVENS */
-.bg::after{
-content:"";
+/* ESTRELAS */
+.stars{
 position:absolute;
 width:100%;
 height:100%;
-background:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent),
-radial-gradient(circle at 80% 40%, rgba(255,255,255,0.2), transparent),
-radial-gradient(circle at 50% 80%, rgba(255,255,255,0.15), transparent);
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:3px 3px;
+opacity:0.2;
+z-index:-2;
 }
 
-/* LUA */
+/* LUA BONITA (SEM BUG) */
 .moon{
-width:70px;
-height:70px;
-background:#fff;
-border-radius:50%;
 position:absolute;
-top:30px;
-left:30px;
-box-shadow:0 0 60px rgba(255,255,255,0.6);
+top:60px;
+left:40px;
+width:80px;
+height:80px;
+background:radial-gradient(circle at 30% 30%, #fff, #ddd);
+border-radius:50%;
+box-shadow:0 0 40px rgba(255,255,255,0.6);
+z-index:-1;
+}
+
+/* NUVENS SUAVES */
+.cloud{
+position:absolute;
+background:rgba(255,255,255,0.25);
+border-radius:50px;
+filter:blur(20px);
+animation:moveClouds 40s linear infinite;
+}
+
+.cloud1{width:150px;height:60px;top:150px;left:-100px;}
+.cloud2{width:200px;height:80px;top:250px;right:-120px;}
+.cloud3{width:120px;height:50px;bottom:120px;left:-80px;}
+
+@keyframes moveClouds{
+from{transform:translateX(0);}
+to{transform:translateX(600px);}
 }
 
 /* TÍTULO */
 h1{
-margin-top:80px;
-font-size:32px;
-font-weight:600;
 text-align:center;
+margin-top:120px;
+font-size:30px;
 }
 
 /* TELAS */
-.screen{
-display:none;
-width:100%;
-}
-.active{
-display:block;
-}
+.screen{display:none;}
+.active{display:block;}
 
 /* CARD */
 .card{
@@ -90,7 +99,7 @@ backdrop-filter:blur(15px);
 box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-/* BOTÃO */
+/* BOTÕES */
 .btn{
 width:100%;
 padding:15px;
@@ -104,15 +113,17 @@ color:#333;
 
 /* CHAT */
 .chat{
-height:300px;
+height:250px;
 overflow-y:auto;
 margin-bottom:10px;
 }
+
 .msg{
 margin:5px 0;
 padding:10px;
 border-radius:10px;
 }
+
 .user{background:#fff;color:#000;}
 .bot{background:rgba(255,255,255,0.2);}
 
@@ -127,10 +138,16 @@ margin-top:10px;
 </head>
 
 <body>
+
 <div class="app">
 
 <div class="bg"></div>
+<div class="stars"></div>
 <div class="moon"></div>
+
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
 
 <!-- HOME -->
 <div id="home" class="screen active">
@@ -170,50 +187,44 @@ margin-top:10px;
 
 <div class="card">
 <h3>Meditação guiada</h3>
-<p>
-Feche os olhos…<br>
-Inspire por 4 segundos…<br>
-Segure por 4 segundos…<br>
-Solte lentamente por 6 segundos…<br>
-Repita por 2 minutos.
-</p>
+<p>Inspire 4s… segure 4s… solte 6s… repita.</p>
 </div>
 
 <div class="card">
-<h3>Frases motivacionais</h3>
+<h3>Frases</h3>
 <p>
-1. Você é mais forte do que pensa.<br>
-2. Um dia de cada vez.<br>
-3. Sua dor importa.<br>
-4. Tudo passa.<br>
-5. Respire.<br>
-6. Você merece paz.<br>
-7. Continue.<br>
-8. Confie em você.<br>
-9. Você não está sozinho.<br>
-10. Vai dar certo.
+1. Você é forte.<br>
+2. Vai passar.<br>
+3. Respire.<br>
+4. Continue.<br>
+5. Confie.<br>
+6. Você consegue.<br>
+7. Calma.<br>
+8. Você importa.<br>
+9. Um dia de cada vez.<br>
+10. Tudo melhora.
 </p>
 </div>
 </div>
 
 <!-- PROFISSIONAL -->
 <div id="profissional" class="screen">
-<h2>Cadastro profissional</h2>
+<h2>Cadastro</h2>
 
-<input placeholder="Nome completo">
+<input placeholder="Nome">
 <input placeholder="CRM">
-<input placeholder="Data de nascimento">
+<input placeholder="Nascimento">
 
 <button class="btn" onclick="go('perfil')">Continuar</button>
 </div>
 
 <!-- PERFIL -->
 <div id="perfil" class="screen">
-<h2>Perfil profissional</h2>
+<h2>Perfil</h2>
 
-<input placeholder="Descrição profissional">
+<input placeholder="Descrição">
 
-<button class="btn" onclick="go('pagamento')">Ativar perfil</button>
+<button class="btn" onclick="go('pagamento')">Ativar</button>
 </div>
 
 <!-- PAGAMENTO -->
@@ -221,7 +232,7 @@ Repita por 2 minutos.
 <h2>Ativar conta</h2>
 
 <div class="card">
-<p>Ative seu perfil profissional por apenas R$7</p>
+<p>Ative por apenas R$7</p>
 <button class="btn">Pagar</button>
 </div>
 </div>
@@ -237,7 +248,7 @@ document.getElementById(id).classList.add('active');
 function startChat(humor){
 go('chat');
 addBot("Oi… estou aqui com você 💜");
-addBot("Você disse que está " + humor + ". Quer me contar mais?");
+addBot("Você disse que está " + humor + ". Quer me contar?");
 }
 
 function send(){
@@ -249,7 +260,7 @@ addUser(text);
 input.value="";
 
 setTimeout(()=>{
-addBot("Eu entendo… você não está sozinho 💜");
+addBot("Eu te entendo… você não está sozinho 💜");
 },800);
 }
 
