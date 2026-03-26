@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MenteViva</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -11,31 +12,49 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
-background: linear-gradient(180deg,#7b6fd6,#f2a18c);
-height:100vh;
+background:linear-gradient(180deg,#6C5CE7,#A29BFE);
 display:flex;
 justify-content:center;
 align-items:center;
-color:white;
-overflow:hidden;
+height:100vh;
+color:#fff;
 }
 
-/* FUNDO */
-.bg{position:absolute;width:100%;height:100%;z-index:-1;}
-.cloud{position:absolute;background:rgba(255,255,255,0.2);border-radius:50px;filter:blur(10px);}
-.cloud1{width:200px;height:80px;top:20%;left:10%;}
-.cloud2{width:250px;height:90px;top:60%;right:10%;}
-
 /* APP */
-.app{width:100%;max-width:420px;padding:20px;}
+.app{
+width:100%;
+max-width:390px;
+padding:25px;
+text-align:center;
+}
 
 /* LUA */
-.moon{text-align:center;font-size:55px;}
-.title{text-align:center;font-size:30px;font-weight:600;}
+.moon{
+font-size:40px;
+margin-bottom:10px;
+}
+
+/* TEXTO */
+.title{
+font-size:22px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:14px;
+opacity:0.9;
+margin-bottom:20px;
+}
+
+/* BONEQUINHA */
+.avatar{
+font-size:80px;
+margin:20px 0;
+}
 
 /* CARD */
 .card{
-margin-top:20px;
 background:rgba(255,255,255,0.15);
 padding:20px;
 border-radius:20px;
@@ -45,204 +64,101 @@ box-shadow:0 10px 30px rgba(0,0,0,0.2);
 
 /* BOTÕES */
 .btn{
-background:white;color:#333;
-padding:14px;margin:8px 0;
-border-radius:12px;
-text-align:center;
+background:#fff;
+color:#333;
+padding:14px;
+border-radius:15px;
+margin-top:10px;
 font-weight:600;
 cursor:pointer;
-}
-
-.back{
-background:rgba(255,255,255,0.2);
-color:white;
 }
 
 /* TELAS */
 .screen{display:none;}
 .active{display:block;}
-
-/* GRID EMOÇÕES */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-/* CHAT */
-.chat-box{height:260px;overflow:auto;margin-bottom:10px;}
-.msg{margin:5px 0;padding:10px;border-radius:10px;}
-.user{background:#fff;color:#000;}
-.bot{background:#ddd;color:#000;}
-
-input,textarea{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:none;
-margin-top:10px;
-}
-
-/* TABS */
-.tabs{display:flex;gap:10px;}
-.tab{
-flex:1;padding:10px;background:white;color:black;
-border-radius:10px;text-align:center;cursor:pointer;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="bg">
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-</div>
-
 <div class="app">
 
-<div class="moon">🌙</div>
-<div class="title">MenteViva 🌱</div>
-
 <!-- HOME -->
-<div class="card screen active" id="home">
+<div id="home" class="screen active">
+
+<div class="moon">🌙</div>
+
+<div class="title">
+Bem-vindo!
+</div>
+
+<div class="subtitle">
+Estamos aqui para cuidar de você nos bons e nos dias difíceis 💜
+</div>
+
+<div class="avatar">🧘‍♀️</div>
+
+<div class="card">
+
+<div class="subtitle">
+Como você está se sentindo hoje?
+</div>
+
 <div class="btn" onclick="go('humor')">Começar</div>
-<div class="btn" onclick="go('explorar')">Explorar</div>
-<div class="btn" onclick="go('profissional')">Sou profissional</div>
+<div class="btn" onclick="go('explorar')">Explorar primeiro</div>
+<div class="btn" onclick="go('profissional')">Sou psicólogo ou psiquiatra</div>
+
+</div>
 </div>
 
 <!-- HUMOR -->
-<div class="card screen" id="humor">
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
-<h3>Como você está hoje?</h3>
+<div id="humor" class="screen">
+<h2>Como você está?</h2>
 
-<div class="grid">
-<div class="btn" onclick="startChat('feliz')">😊 Feliz</div>
-<div class="btn" onclick="startChat('triste')">😢 Triste</div>
-<div class="btn" onclick="startChat('ansioso')">😰 Ansioso</div>
-<div class="btn" onclick="startChat('calmo')">😌 Calmo</div>
-<div class="btn" onclick="startChat('cansado')">😴 Cansado</div>
-<div class="btn" onclick="startChat('motivado')">🔥 Motivado</div>
-<div class="btn" onclick="startChat('confuso')">😕 Confuso</div>
-<div class="btn" onclick="startChat('sozinho')">😔 Sozinho</div>
-<div class="btn" onclick="startChat('estressado')">😤 Estressado</div>
-<div class="btn" onclick="startChat('medo')">😨 Com medo</div>
-<div class="btn" onclick="startChat('esperanca')">✨ Esperançoso</div>
-<div class="btn" onclick="startChat('vazio')">🕳️ Vazio</div>
-</div>
+<div class="card">
+<div class="btn">😊</div>
+<div class="btn">😢</div>
+<div class="btn">😰</div>
+<div class="btn">😌</div>
+<div class="btn">😴</div>
 </div>
 
-<!-- CHAT -->
-<div class="card screen" id="chat">
-<div class="btn back" onclick="go('humor')">⬅ Voltar</div>
-<div class="chat-box" id="chatBox"></div>
-<input id="inputMsg" placeholder="Digite..." onkeypress="send(event)">
+<div class="btn" onclick="go('home')">⬅ Voltar</div>
 </div>
 
 <!-- EXPLORAR -->
-<div class="card screen" id="explorar">
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
+<div id="explorar" class="screen">
+<h2>Escolha o que deseja explorar</h2>
 
-<div class="tabs">
-<div class="tab" onclick="showTab('med')">Meditação</div>
-<div class="tab" onclick="showTab('frases')">Frases</div>
+<div class="card">
+<div class="btn">Meditação guiada</div>
+<div class="btn">Frases motivacionais</div>
 </div>
 
-<div id="med" style="margin-top:15px;">
-<p>🌿 Inspire 4s • Segure 4s • Solte 6s</p>
-<audio controls>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-</audio>
-</div>
-
-<div id="frases" style="display:none;margin-top:15px;">
-<ol>
-<li>Você é mais forte do que pensa.</li>
-<li>Um dia de cada vez.</li>
-<li>Sua dor importa.</li>
-<li>Tudo passa.</li>
-<li>Respire.</li>
-<li>Você merece paz.</li>
-<li>Continue.</li>
-<li>Confie em você.</li>
-<li>Você não está sozinho.</li>
-<li>Vai dar certo.</li>
-</ol>
-</div>
-
+<div class="btn" onclick="go('home')">⬅ Voltar</div>
 </div>
 
 <!-- PROFISSIONAL -->
-<div class="card screen" id="profissional">
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
+<div id="profissional" class="screen">
+<h2>Cadastro profissional</h2>
 
-<h3>Cadastro profissional</h3>
-<input placeholder="Nome completo">
-<input placeholder="CRM / Registro">
-<input placeholder="Data de nascimento">
-<textarea placeholder="Descrição profissional"></textarea>
+<div class="card">
+<input placeholder="Nome completo"><br><br>
+<input placeholder="CRM / CRP"><br><br>
 
-<div class="btn">Ativar por R$7</div>
+<div class="btn">Cadastrar</div>
+</div>
+
+<div class="btn" onclick="go('home')">⬅ Voltar</div>
 </div>
 
 </div>
 
 <script>
-
 function go(id){
 document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
 }
-
-function startChat(humor){
-go('chat')
-
-let respostas = {
-feliz:"Que bom que você está se sentindo bem 😊",
-triste:"Sinto muito... estou aqui com você 💛",
-ansioso:"Respira comigo... vai ficar tudo bem 😌",
-calmo:"Que paz boa 🌿",
-cansado:"Você merece descanso 😴",
-motivado:"Use essa energia 🔥",
-confuso:"Vamos entender juntos 💭",
-sozinho:"Você não está sozinho 💛",
-estressado:"Vamos desacelerar 😌",
-medo:"Você é mais forte que isso 💪",
-esperanca:"Continue acreditando ✨",
-vazio:"Mesmo assim você importa 💛"
-}
-
-addMsg("bot", respostas[humor])
-}
-
-function addMsg(type,text){
-let div=document.createElement('div')
-div.className='msg '+type
-div.innerText=text
-chatBox.appendChild(div)
-chatBox.scrollTop=chatBox.scrollHeight
-}
-
-function send(e){
-if(e.key==="Enter"){
-let val=inputMsg.value
-addMsg("user",val)
-
-setTimeout(()=>{
-addMsg("bot","Estou aqui com você... me conta mais 💛")
-},800)
-
-inputMsg.value=""
-}
-}
-
-function showTab(tab){
-document.getElementById('med').style.display='none'
-document.getElementById('frases').style.display='none'
-document.getElementById(tab).style.display='block'
-}
-
 </script>
 
 </body>
