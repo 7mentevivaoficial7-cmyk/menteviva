@@ -16,20 +16,24 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
 color:white;
+overflow:hidden;
 }
 
+/* FUNDO */
 .bg{position:absolute;width:100%;height:100%;z-index:-1;}
 .cloud{position:absolute;background:rgba(255,255,255,0.2);border-radius:50px;filter:blur(10px);}
 .cloud1{width:200px;height:80px;top:20%;left:10%;}
 .cloud2{width:250px;height:90px;top:60%;right:10%;}
 
+/* APP */
 .app{width:100%;max-width:420px;padding:20px;}
 
-.moon{font-size:60px;text-align:center;}
-.title{text-align:center;font-size:32px;font-weight:600;}
+/* LUA */
+.moon{text-align:center;font-size:55px;}
+.title{text-align:center;font-size:30px;font-weight:600;}
 
+/* CARD */
 .card{
 margin-top:20px;
 background:rgba(255,255,255,0.15);
@@ -39,6 +43,7 @@ backdrop-filter:blur(15px);
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
+/* BOTÕES */
 .btn{
 background:white;color:#333;
 padding:14px;margin:8px 0;
@@ -48,16 +53,24 @@ font-weight:600;
 cursor:pointer;
 }
 
+.back{
+background:rgba(255,255,255,0.2);
+color:white;
+}
+
+/* TELAS */
 .screen{display:none;}
 .active{display:block;}
 
+/* GRID EMOÇÕES */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
-.chat-box{height:300px;overflow:auto;margin-bottom:10px;}
+/* CHAT */
+.chat-box{height:260px;overflow:auto;margin-bottom:10px;}
 .msg{margin:5px 0;padding:10px;border-radius:10px;}
 .user{background:#fff;color:#000;}
 .bot{background:#ddd;color:#000;}
@@ -70,11 +83,13 @@ border:none;
 margin-top:10px;
 }
 
+/* TABS */
 .tabs{display:flex;gap:10px;}
 .tab{
 flex:1;padding:10px;background:white;color:black;
 border-radius:10px;text-align:center;cursor:pointer;
 }
+
 </style>
 </head>
 
@@ -99,6 +114,7 @@ border-radius:10px;text-align:center;cursor:pointer;
 
 <!-- HUMOR -->
 <div class="card screen" id="humor">
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
 <h3>Como você está hoje?</h3>
 
 <div class="grid">
@@ -111,21 +127,22 @@ border-radius:10px;text-align:center;cursor:pointer;
 <div class="btn" onclick="startChat('confuso')">😕 Confuso</div>
 <div class="btn" onclick="startChat('sozinho')">😔 Sozinho</div>
 <div class="btn" onclick="startChat('estressado')">😤 Estressado</div>
-<div class="btn" onclick="startChat('com_medo')">😨 Com medo</div>
-<div class="btn" onclick="startChat('esperancoso')">✨ Esperançoso</div>
+<div class="btn" onclick="startChat('medo')">😨 Com medo</div>
+<div class="btn" onclick="startChat('esperanca')">✨ Esperançoso</div>
 <div class="btn" onclick="startChat('vazio')">🕳️ Vazio</div>
 </div>
-
 </div>
 
 <!-- CHAT -->
 <div class="card screen" id="chat">
+<div class="btn back" onclick="go('humor')">⬅ Voltar</div>
 <div class="chat-box" id="chatBox"></div>
 <input id="inputMsg" placeholder="Digite..." onkeypress="send(event)">
 </div>
 
 <!-- EXPLORAR -->
 <div class="card screen" id="explorar">
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
 
 <div class="tabs">
 <div class="tab" onclick="showTab('med')">Meditação</div>
@@ -158,6 +175,8 @@ border-radius:10px;text-align:center;cursor:pointer;
 
 <!-- PROFISSIONAL -->
 <div class="card screen" id="profissional">
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
+
 <h3>Cadastro profissional</h3>
 <input placeholder="Nome completo">
 <input placeholder="CRM / Registro">
@@ -180,18 +199,18 @@ function startChat(humor){
 go('chat')
 
 let respostas = {
-feliz:"Que bom que você está se sentindo bem 😊 Quer compartilhar o que te deixou assim?",
-triste:"Sinto muito por isso... estou aqui com você 💛 Quer conversar?",
-ansioso:"Respira comigo... você não está sozinho 😌",
-calmo:"Que bom sentir paz... vamos aproveitar esse momento 🌿",
-cansado:"Talvez seu corpo esteja pedindo descanso 😴",
-motivado:"Isso é incrível 🔥 use essa energia ao seu favor!",
-confuso:"Tudo bem não entender tudo agora... vamos por partes 💭",
-sozinho:"Eu estou aqui com você 💛 você não está sozinho",
-estressado:"Vamos respirar juntos... isso vai passar 😌",
-com_medo:"É normal sentir medo... mas você é mais forte do que pensa 💪",
-esperancoso:"Que sentimento lindo ✨ continue assim!",
-vazio:"Mesmo quando parece vazio, você ainda importa 💛"
+feliz:"Que bom que você está se sentindo bem 😊",
+triste:"Sinto muito... estou aqui com você 💛",
+ansioso:"Respira comigo... vai ficar tudo bem 😌",
+calmo:"Que paz boa 🌿",
+cansado:"Você merece descanso 😴",
+motivado:"Use essa energia 🔥",
+confuso:"Vamos entender juntos 💭",
+sozinho:"Você não está sozinho 💛",
+estressado:"Vamos desacelerar 😌",
+medo:"Você é mais forte que isso 💪",
+esperanca:"Continue acreditando ✨",
+vazio:"Mesmo assim você importa 💛"
 }
 
 addMsg("bot", respostas[humor])
@@ -212,7 +231,7 @@ addMsg("user",val)
 
 setTimeout(()=>{
 addMsg("bot","Estou aqui com você... me conta mais 💛")
-},1000)
+},800)
 
 inputMsg.value=""
 }
