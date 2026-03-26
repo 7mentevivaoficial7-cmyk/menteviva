@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MenteViva</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,62 +19,45 @@ height:100vh;
 color:#fff;
 }
 
-/* APP */
 .app{
 width:100%;
 max-width:390px;
-padding:25px;
-text-align:center;
+padding:20px;
 }
 
-/* LUA */
-.moon{
-font-size:40px;
-margin-bottom:10px;
-}
-
-/* TEXTO */
-.title{
-font-size:22px;
-font-weight:600;
-margin-bottom:10px;
-}
-
-.subtitle{
-font-size:14px;
-opacity:0.9;
-margin-bottom:20px;
-}
-
-/* BONEQUINHA */
-.avatar{
-font-size:80px;
-margin:20px 0;
-}
-
-/* CARD */
+/* UI */
 .card{
 background:rgba(255,255,255,0.15);
 padding:20px;
 border-radius:20px;
-backdrop-filter:blur(15px);
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+margin-top:15px;
+backdrop-filter:blur(10px);
 }
 
-/* BOTÕES */
 .btn{
 background:#fff;
 color:#333;
-padding:14px;
-border-radius:15px;
+padding:12px;
+border-radius:12px;
 margin-top:10px;
-font-weight:600;
+text-align:center;
 cursor:pointer;
+font-weight:600;
 }
 
-/* TELAS */
 .screen{display:none;}
 .active{display:block;}
+
+.back{
+margin-top:10px;
+background:rgba(255,255,255,0.3);
+}
+
+/* chat */
+.chat{height:200px;overflow:auto;margin-bottom:10px;}
+.msg{padding:8px;border-radius:10px;margin:5px 0;}
+.user{background:#fff;color:#000;}
+.bot{background:#ddd;color:#000;}
 </style>
 </head>
 
@@ -85,80 +67,169 @@ cursor:pointer;
 
 <!-- HOME -->
 <div id="home" class="screen active">
+<h2>Bem-vindo! 💜</h2>
+<p>Estamos aqui para cuidar de você nos bons e nos dias difíceis.</p>
 
-<div class="moon">🌙</div>
-
-<div class="title">
-Bem-vindo!
-</div>
-
-<div class="subtitle">
-Estamos aqui para cuidar de você nos bons e nos dias difíceis 💜
-</div>
-
-<div class="avatar">🧘‍♀️</div>
+<div style="font-size:60px;text-align:center;">🧘‍♀️</div>
 
 <div class="card">
-
-<div class="subtitle">
-Como você está se sentindo hoje?
-</div>
-
 <div class="btn" onclick="go('humor')">Começar</div>
 <div class="btn" onclick="go('explorar')">Explorar primeiro</div>
-<div class="btn" onclick="go('profissional')">Sou psicólogo ou psiquiatra</div>
-
+<div class="btn" onclick="go('cadastro1')">Sou psicólogo ou psiquiatra</div>
 </div>
 </div>
 
 <!-- HUMOR -->
 <div id="humor" class="screen">
-<h2>Como você está?</h2>
+<h3>Como você está?</h3>
 
 <div class="card">
-<div class="btn">😊</div>
-<div class="btn">😢</div>
-<div class="btn">😰</div>
-<div class="btn">😌</div>
-<div class="btn">😴</div>
+<div class="btn" onclick="startChat('feliz')">😊 Feliz</div>
+<div class="btn" onclick="startChat('triste')">😢 Triste</div>
+<div class="btn" onclick="startChat('ansioso')">😰 Ansioso</div>
+<div class="btn" onclick="startChat('cansado')">😴 Cansado</div>
+<div class="btn" onclick="startChat('estressado')">😤 Estressado</div>
 </div>
 
-<div class="btn" onclick="go('home')">⬅ Voltar</div>
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
+</div>
+
+<!-- CHAT -->
+<div id="chat" class="screen">
+<div class="chat" id="chatBox"></div>
+<input id="msg" placeholder="Digite..." onkeypress="send(event)">
+<div class="btn back" onclick="go('humor')">⬅ Voltar</div>
 </div>
 
 <!-- EXPLORAR -->
 <div id="explorar" class="screen">
-<h2>Escolha o que deseja explorar</h2>
+<h3>Escolha o que deseja explorar</h3>
 
 <div class="card">
-<div class="btn">Meditação guiada</div>
-<div class="btn">Frases motivacionais</div>
+<div class="btn" onclick="go('meditacao')">Meditação guiada</div>
+<div class="btn" onclick="go('frases')">Frases motivacionais</div>
 </div>
 
-<div class="btn" onclick="go('home')">⬅ Voltar</div>
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
 </div>
 
-<!-- PROFISSIONAL -->
-<div id="profissional" class="screen">
-<h2>Cadastro profissional</h2>
+<!-- MEDITAÇÃO -->
+<div id="meditacao" class="screen">
+<h3>Meditação</h3>
 
 <div class="card">
+<div class="btn" onclick="med('relaxar')">Relaxar</div>
+<div class="btn" onclick="med('ansiedade')">Ansiedade</div>
+<div class="btn" onclick="med('dormir')">Dormir melhor</div>
+<div class="btn" onclick="med('confianca')">Confiança</div>
+<div class="btn" onclick="med('amor')">Amor próprio</div>
+</div>
+
+<p id="medText"></p>
+
+<audio controls>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="btn back" onclick="go('explorar')">⬅ Voltar</div>
+</div>
+
+<!-- FRASES -->
+<div id="frases" class="screen">
+<h3>Frases motivacionais</h3>
+
+<div class="card">
+<p>
+Você é forte 💪<br>
+Vai passar 🌈<br>
+Respire 🌿<br>
+Você consegue ✨<br>
+Confie em você 💜
+</p>
+</div>
+
+<div class="btn back" onclick="go('explorar')">⬅ Voltar</div>
+</div>
+
+<!-- CADASTRO 1 -->
+<div id="cadastro1" class="screen">
+<h3>Cadastro profissional</h3>
+
 <input placeholder="Nome completo"><br><br>
+<input placeholder="Email"><br><br>
 <input placeholder="CRM / CRP"><br><br>
+<input placeholder="Telefone"><br><br>
 
-<div class="btn">Cadastrar</div>
+<div class="btn" onclick="go('perfil')">Cadastrar</div>
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
 </div>
 
-<div class="btn" onclick="go('home')">⬅ Voltar</div>
+<!-- PERFIL -->
+<div id="perfil" class="screen">
+<h3>Criar perfil</h3>
+
+<input placeholder="Descrição"><br><br>
+
+<div class="btn" onclick="go('pagamento')">Salvar</div>
+</div>
+
+<!-- PAGAMENTO -->
+<div id="pagamento" class="screen">
+<h3>Ativar perfil</h3>
+
+<div class="card">
+<p>Assinatura por R$7/mês</p>
+<div class="btn">Começar agora</div>
+</div>
+
+<div class="btn back" onclick="go('home')">⬅ Voltar</div>
 </div>
 
 </div>
 
 <script>
+
 function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'))
-document.getElementById(id).classList.add('active')
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
+
+function startChat(h){
+go('chat');
+add("bot","Estou aqui com você 💜");
+}
+
+function add(type,text){
+let div=document.createElement('div');
+div.className="msg "+type;
+div.innerText=text;
+chatBox.appendChild(div);
+}
+
+function send(e){
+if(e.key==="Enter"){
+let v=msg.value;
+add("user",v);
+
+setTimeout(()=>{
+add("bot","Entendo... me conta mais 💜");
+},800);
+
+msg.value="";
+}
+}
+
+function med(tipo){
+let textos={
+relaxar:"Respire fundo lentamente...",
+ansiedade:"Inspire 4s... solte 6s...",
+dormir:"Relaxe seu corpo inteiro...",
+confianca:"Você é capaz...",
+amor:"Você merece amor 💜"
+}
+medText.innerText=textos[tipo];
+}
+
 </script>
 
 </body>
