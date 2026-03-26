@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,210 +11,219 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
+background: linear-gradient(180deg,#7b6fd6,#f2a18c);
+height:100vh;
 display:flex;
 justify-content:center;
-background:#000;
-}
-
-.app{
-width:100%;
-max-width:420px;
-height:100vh;
+align-items:center;
 overflow:hidden;
-position:relative;
-color:#fff;
-padding:20px;
+color:white;
 }
 
-/* FUNDO BONITO */
-.bg{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(180deg,#6c5ce7,#fab1a0);
-z-index:-3;
-}
+.bg{position:absolute;width:100%;height:100%;z-index:-1;}
+.cloud{position:absolute;background:rgba(255,255,255,0.2);border-radius:50px;filter:blur(10px);}
+.cloud1{width:200px;height:80px;top:20%;left:10%;}
+.cloud2{width:250px;height:90px;top:60%;right:10%;}
 
-/* NUVENS */
-.cloud{
-position:absolute;
-background:rgba(255,255,255,0.2);
-border-radius:50px;
-filter:blur(25px);
-animation:move 50s linear infinite;
-}
+.app{width:100%;max-width:420px;padding:20px;}
 
-.cloud1{width:180px;height:70px;top:120px;left:-100px;}
-.cloud2{width:220px;height:90px;top:260px;right:-120px;}
-.cloud3{width:140px;height:60px;bottom:120px;left:-80px;}
+.moon{font-size:60px;text-align:center;}
+.title{text-align:center;font-size:32px;font-weight:600;}
 
-@keyframes move{
-from{transform:translateX(0);}
-to{transform:translateX(600px);}
-}
-
-/* LUA EMOJI */
-.moon{
-position:absolute;
-top:40px;
-left:20px;
-font-size:60px;
-}
-
-/* TÍTULO */
-h1{
-text-align:center;
-margin-top:100px;
-font-size:28px;
-}
-
-/* CARD */
 .card{
+margin-top:20px;
 background:rgba(255,255,255,0.15);
 padding:20px;
 border-radius:20px;
-margin-top:20px;
 backdrop-filter:blur(15px);
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* BOTÕES */
 .btn{
-width:100%;
-padding:15px;
-border:none;
-border-radius:15px;
-margin-top:10px;
+background:white;color:#333;
+padding:14px;margin:8px 0;
+border-radius:12px;
+text-align:center;
 font-weight:600;
-background:#fff;
-color:#333;
+cursor:pointer;
 }
 
-/* TELAS */
 .screen{display:none;}
 .active{display:block;}
 
-/* ABAS */
-.tabs{
-display:flex;
-margin-top:20px;
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
-.tab{
-flex:1;
+.chat-box{height:300px;overflow:auto;margin-bottom:10px;}
+.msg{margin:5px 0;padding:10px;border-radius:10px;}
+.user{background:#fff;color:#000;}
+.bot{background:#ddd;color:#000;}
+
+input,textarea{
+width:100%;
 padding:10px;
 border-radius:10px;
-background:rgba(255,255,255,0.2);
-text-align:center;
+border:none;
+margin-top:10px;
 }
 
-.activeTab{
-background:#fff;
-color:#000;
+.tabs{display:flex;gap:10px;}
+.tab{
+flex:1;padding:10px;background:white;color:black;
+border-radius:10px;text-align:center;cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
-<div class="bg"></div>
-
+<div class="bg">
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
-<div class="cloud cloud3"></div>
+</div>
+
+<div class="app">
 
 <div class="moon">🌙</div>
+<div class="title">MenteViva 🌱</div>
 
 <!-- HOME -->
-<div id="home" class="screen active">
-<h1>MenteViva 🌱</h1>
-
-<div class="card">
-<button class="btn" onclick="go('humor')">Começar</button>
-<button class="btn" onclick="go('explorar')">Explorar</button>
-<button class="btn" onclick="go('profissional')">Sou profissional</button>
-</div>
+<div class="card screen active" id="home">
+<div class="btn" onclick="go('humor')">Começar</div>
+<div class="btn" onclick="go('explorar')">Explorar</div>
+<div class="btn" onclick="go('profissional')">Sou profissional</div>
 </div>
 
 <!-- HUMOR -->
-<div id="humor" class="screen">
-<h2>Como você está?</h2>
+<div class="card screen" id="humor">
+<h3>Como você está hoje?</h3>
 
-<div class="card">
-<button class="btn" onclick="go('chat')">😊 Feliz</button>
-<button class="btn" onclick="go('chat')">😢 Triste</button>
-<button class="btn" onclick="go('chat')">😰 Ansioso</button>
+<div class="grid">
+<div class="btn" onclick="startChat('feliz')">😊 Feliz</div>
+<div class="btn" onclick="startChat('triste')">😢 Triste</div>
+<div class="btn" onclick="startChat('ansioso')">😰 Ansioso</div>
+<div class="btn" onclick="startChat('calmo')">😌 Calmo</div>
+<div class="btn" onclick="startChat('cansado')">😴 Cansado</div>
+<div class="btn" onclick="startChat('motivado')">🔥 Motivado</div>
+<div class="btn" onclick="startChat('confuso')">😕 Confuso</div>
+<div class="btn" onclick="startChat('sozinho')">😔 Sozinho</div>
+<div class="btn" onclick="startChat('estressado')">😤 Estressado</div>
+<div class="btn" onclick="startChat('com_medo')">😨 Com medo</div>
+<div class="btn" onclick="startChat('esperancoso')">✨ Esperançoso</div>
+<div class="btn" onclick="startChat('vazio')">🕳️ Vazio</div>
 </div>
+
 </div>
 
 <!-- CHAT -->
-<div id="chat" class="screen">
-<h2>Conversa</h2>
-
-<div class="card">
-<p>Oi… estou aqui com você 💜</p>
-</div>
+<div class="card screen" id="chat">
+<div class="chat-box" id="chatBox"></div>
+<input id="inputMsg" placeholder="Digite..." onkeypress="send(event)">
 </div>
 
 <!-- EXPLORAR -->
-<div id="explorar" class="screen">
-<h2>Explorar</h2>
+<div class="card screen" id="explorar">
 
 <div class="tabs">
-<div id="tab1" class="tab activeTab" onclick="openTab(1)">Meditação</div>
-<div id="tab2" class="tab" onclick="openTab(2)">Frases</div>
+<div class="tab" onclick="showTab('med')">Meditação</div>
+<div class="tab" onclick="showTab('frases')">Frases</div>
 </div>
 
-<div id="meditacao" class="card">
-<p>Inspire 4s… segure 4s… solte 6s… repita lentamente.</p>
+<div id="med" style="margin-top:15px;">
+<p>🌿 Inspire 4s • Segure 4s • Solte 6s</p>
+<audio controls>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
 </div>
 
-<div id="frases" class="card" style="display:none;">
-<p>
-1. Você é forte.<br>
-2. Vai passar.<br>
-3. Respire.<br>
-4. Continue.<br>
-5. Confie.<br>
-6. Você consegue.<br>
-7. Calma.<br>
-8. Você importa.<br>
-9. Um dia de cada vez.<br>
-10. Tudo melhora.
-</p>
+<div id="frases" style="display:none;margin-top:15px;">
+<ol>
+<li>Você é mais forte do que pensa.</li>
+<li>Um dia de cada vez.</li>
+<li>Sua dor importa.</li>
+<li>Tudo passa.</li>
+<li>Respire.</li>
+<li>Você merece paz.</li>
+<li>Continue.</li>
+<li>Confie em você.</li>
+<li>Você não está sozinho.</li>
+<li>Vai dar certo.</li>
+</ol>
 </div>
+
 </div>
 
 <!-- PROFISSIONAL -->
-<div id="profissional" class="screen">
-<h2>Cadastro</h2>
+<div class="card screen" id="profissional">
+<h3>Cadastro profissional</h3>
+<input placeholder="Nome completo">
+<input placeholder="CRM / Registro">
+<input placeholder="Data de nascimento">
+<textarea placeholder="Descrição profissional"></textarea>
 
-<input placeholder="Nome" class="btn">
-<input placeholder="CRM" class="btn">
-<input placeholder="Nascimento" class="btn">
-
-<button class="btn">Continuar</button>
+<div class="btn">Ativar por R$7</div>
 </div>
 
 </div>
 
 <script>
+
 function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'))
+document.getElementById(id).classList.add('active')
 }
 
-function openTab(n){
-document.getElementById('meditacao').style.display = n===1 ? 'block':'none';
-document.getElementById('frases').style.display = n===2 ? 'block':'none';
+function startChat(humor){
+go('chat')
 
-document.getElementById('tab1').classList.remove('activeTab');
-document.getElementById('tab2').classList.remove('activeTab');
-
-document.getElementById('tab'+n).classList.add('activeTab');
+let respostas = {
+feliz:"Que bom que você está se sentindo bem 😊 Quer compartilhar o que te deixou assim?",
+triste:"Sinto muito por isso... estou aqui com você 💛 Quer conversar?",
+ansioso:"Respira comigo... você não está sozinho 😌",
+calmo:"Que bom sentir paz... vamos aproveitar esse momento 🌿",
+cansado:"Talvez seu corpo esteja pedindo descanso 😴",
+motivado:"Isso é incrível 🔥 use essa energia ao seu favor!",
+confuso:"Tudo bem não entender tudo agora... vamos por partes 💭",
+sozinho:"Eu estou aqui com você 💛 você não está sozinho",
+estressado:"Vamos respirar juntos... isso vai passar 😌",
+com_medo:"É normal sentir medo... mas você é mais forte do que pensa 💪",
+esperancoso:"Que sentimento lindo ✨ continue assim!",
+vazio:"Mesmo quando parece vazio, você ainda importa 💛"
 }
+
+addMsg("bot", respostas[humor])
+}
+
+function addMsg(type,text){
+let div=document.createElement('div')
+div.className='msg '+type
+div.innerText=text
+chatBox.appendChild(div)
+chatBox.scrollTop=chatBox.scrollHeight
+}
+
+function send(e){
+if(e.key==="Enter"){
+let val=inputMsg.value
+addMsg("user",val)
+
+setTimeout(()=>{
+addMsg("bot","Estou aqui com você... me conta mais 💛")
+},1000)
+
+inputMsg.value=""
+}
+}
+
+function showTab(tab){
+document.getElementById('med').style.display='none'
+document.getElementById('frases').style.display='none'
+document.getElementById(tab).style.display='block'
+}
+
 </script>
 
 </body>
