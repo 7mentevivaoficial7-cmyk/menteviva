@@ -5,266 +5,247 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MenteViva</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
+  font-family: Arial;
 }
 
 body {
-  background: linear-gradient(180deg, #6c5ce7, #fab1a0);
+  background: url('fundo.png') no-repeat center center fixed;
+  background-size: cover;
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* APP CONTAINER */
-.app {
-  width: 100%;
-  max-width: 420px;
-  height: 100vh;
-  margin: auto;
-  position: relative;
+/* CELULAR */
+.phone {
+  width: 360px;
+  height: 720px;
+  border-radius: 35px;
   overflow: hidden;
-  border-radius: 25px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(15px);
+  color: white;
+  position: relative;
 }
 
 /* TELAS */
 .screen {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 25px;
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  color: white;
+  padding: 20px;
+  height: 100%;
 }
 
-.screen.active {
-  display: flex;
+.active {
+  display: block;
 }
 
-/* HEADER */
-.header {
+/* TOPO */
+.top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 20px;
+  width: 130px;
 }
 
-.gear {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* LUA */
-.moon {
-  position: absolute;
-  top: 70px;
-  left: 20px;
-  font-size: 30px;
+.back {
+  font-size: 22px;
+  cursor: pointer;
 }
 
 /* TEXTOS */
-.title {
-  font-size: 42px;
-  font-weight: 700;
-  margin-top: 40px;
+.center {
+  text-align: center;
 }
 
-.subtitle {
-  font-size: 18px;
-  margin-top: 15px;
+h1 {
+  margin-top: 20px;
+}
+
+p {
   opacity: 0.9;
 }
 
 /* BONECA */
-.character {
-  width: 140px;
+.boneca {
+  width: 130px;
   margin: 20px auto;
   display: block;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {transform: translateY(0);}
-  50% {transform: translateY(-10px);}
-  100% {transform: translateY(0);}
-}
-
-/* INPUT CARD */
-.card {
-  background: rgba(255,255,255,0.9);
-  color: #333;
-  padding: 15px;
-  border-radius: 25px;
-  text-align: center;
-  margin: 10px 0;
 }
 
 /* BOTÕES */
 .btn {
+  width: 100%;
   padding: 15px;
+  margin: 10px 0;
   border-radius: 30px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 10px;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.btn-primary {
-  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+.primary {
+  background: linear-gradient(90deg,#6a5cff,#9f7bff);
+  color: white;
 }
 
-.btn-outline {
+.outline {
+  background: transparent;
   border: 2px solid white;
+  color: white;
 }
 
-.btn-light {
-  background: white;
-  color: #333;
+.light {
+  background: #eee;
+  color: black;
 }
 
-/* EMOÇÕES */
-.emotions {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 10px;
-}
-
-.emotion {
-  padding: 15px;
-  background: rgba(255,255,255,0.2);
+/* CHAT */
+.chat-box {
+  height: 60%;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.1);
   border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.3s;
+  padding: 10px;
+  margin: 10px 0;
 }
 
-.emotion:hover {
-  background: rgba(255,255,255,0.4);
+.msg {
+  padding: 10px;
+  border-radius: 15px;
+  margin: 5px 0;
 }
 
-/* ANIMAÇÃO TRANSIÇÃO */
-.fade {
-  animation: fade 0.4s;
+.user {
+  background: #9f7bff;
+  text-align: right;
 }
 
-@keyframes fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.bot {
+  background: #eee;
+  color: black;
+}
+
+.input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 25px;
+  border: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="phone">
 
-<!-- TELA 1 -->
-<div class="screen active fade" id="home">
+<!-- HOME -->
+<div class="screen active" id="home">
+  <div class="center">
+    <img src="logo.png" class="logo">
 
-  <div>
-    <div class="header">
-      <div class="logo">🍎 MenteViva</div>
-      <div class="gear">⚙️</div>
-    </div>
+    <h1>Bem-vindo(a)!</h1>
+    <p>Estamos aqui para cuidar de você nos bons e nos dias difíceis</p>
 
-    <div class="moon">🌙</div>
+    <img src="boneca.png" class="boneca">
 
-    <div class="title">Bem-vindo(a)!</div>
-    <div class="subtitle">
-      Estamos aqui para cuidar de você,<br>
-      nos bons e nos dias difíceis.
-    </div>
+    <button class="btn light" onclick="go('emocao')">
+      Como você está se sentindo hoje?
+    </button>
+
+    <button class="btn primary" onclick="go('chat')">Começar</button>
+    <button class="btn outline" onclick="go('explorar')">Explorar primeiro</button>
+    <button class="btn light" onclick="go('profissional')">
+      Sou psicólogo(a) ou psiquiatra
+    </button>
   </div>
-
-  <div>
-    <img class="character" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
-
-    <div class="card">
-      💬 Como você está se sentindo hoje?
-    </div>
-
-    <div class="btn btn-primary" onclick="goTo('feel')">Começar</div>
-    <div class="btn btn-outline">Explorar primeiro</div>
-    <div class="btn btn-light">👤 Sou psicólogo(a)</div>
-  </div>
-
 </div>
 
-<!-- TELA 2 -->
-<div class="screen" id="feel">
-
-  <div>
-    <div class="title">Como você está?</div>
-    <div class="subtitle">Escolha uma emoção</div>
+<!-- EMOÇÕES -->
+<div class="screen" id="emocao">
+  <div class="top">
+    <span class="back" onclick="go('home')">⬅</span>
   </div>
 
-  <div class="emotions">
-    <div class="emotion" onclick="selectEmotion('feliz')">😊 Feliz</div>
-    <div class="emotion" onclick="selectEmotion('triste')">😢 Triste</div>
-    <div class="emotion" onclick="selectEmotion('ansioso')">😰 Ansioso</div>
-    <div class="emotion" onclick="selectEmotion('calmo')">😌 Calmo</div>
-  </div>
+  <h2>Como você está?</h2>
 
-  <div class="btn btn-primary" onclick="goTo('result')">Continuar</div>
-
+  <button class="btn primary" onclick="go('chat')">😊 Muito bem</button>
+  <button class="btn primary" onclick="go('chat')">🙂 Bem</button>
+  <button class="btn primary" onclick="go('chat')">😐 Normal</button>
+  <button class="btn primary" onclick="go('chat')">😟 Ansioso</button>
+  <button class="btn primary" onclick="go('chat')">😢 Triste</button>
 </div>
 
-<!-- TELA 3 -->
-<div class="screen" id="result">
-
-  <div>
-    <div class="title">Obrigado 💜</div>
-    <div class="subtitle" id="resultText"></div>
+<!-- CHAT -->
+<div class="screen" id="chat">
+  <div class="top">
+    <span class="back" onclick="go('home')">⬅</span>
+    <img src="logo.png" class="logo">
   </div>
 
-  <div class="btn btn-primary" onclick="goTo('home')">Voltar</div>
+  <div class="chat-box" id="chatBox"></div>
 
+  <input id="msg" class="input" placeholder="Digite aqui...">
+  <button class="btn primary" onclick="sendMsg()">Enviar</button>
+</div>
+
+<!-- EXPLORAR -->
+<div class="screen" id="explorar">
+  <div class="top">
+    <span class="back" onclick="go('home')">⬅</span>
+    <img src="logo.png" class="logo">
+  </div>
+
+  <h2>Explorar</h2>
+
+  <button class="btn primary">Meditação guiada</button>
+  <button class="btn primary">Frases motivacionais</button>
+</div>
+
+<!-- PROFISSIONAL -->
+<div class="screen" id="profissional">
+  <div class="top">
+    <span class="back" onclick="go('home')">⬅</span>
+    <img src="logo.png" class="logo">
+  </div>
+
+  <h2>Cadastro Profissional</h2>
+
+  <input class="input" placeholder="Nome completo">
+  <input class="input" placeholder="CRM / CRP">
+  <input class="input" placeholder="Email">
+
+  <button class="btn primary">Criar perfil (R$7/mês)</button>
 </div>
 
 </div>
 
 <script>
-let emotion = "";
-
-function goTo(screen) {
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.remove("active");
-  });
-
-  document.getElementById(screen).classList.add("active");
+function go(tela){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(tela).classList.add('active');
 }
 
-function selectEmotion(e) {
-  emotion = e;
+function sendMsg(){
+  let input = document.getElementById('msg');
+  let chat = document.getElementById('chatBox');
+
+  if(input.value === '') return;
+
+  chat.innerHTML += `<div class="msg user">${input.value}</div>`;
+  chat.innerHTML += `<div class="msg bot">Estou aqui com você 💜</div>`;
+
+  input.value = '';
+  chat.scrollTop = chat.scrollHeight;
 }
-
-document.querySelector('[onclick="goTo(\'result\')"]').addEventListener("click", () => {
-  let text = "";
-
-  if (emotion === "feliz") text = "Que ótimo! Continue assim 😊";
-  if (emotion === "triste") text = "Vai passar. Você não está sozinho 💜";
-  if (emotion === "ansioso") text = "Respire fundo. Um passo de cada vez 🌿";
-  if (emotion === "calmo") text = "Que bom! Aproveite esse momento ✨";
-
-  document.getElementById("resultText").innerText = text;
-});
 </script>
 
 </body>
