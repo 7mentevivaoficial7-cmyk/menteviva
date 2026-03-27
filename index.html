@@ -1,236 +1,208 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MenteViva</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+<title>Mente Viva Premium</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
 body{
-background:linear-gradient(180deg,#6C5CE7,#A29BFE);
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-color:#fff;
+background:linear-gradient(180deg,#4e3bbf,#9c7be5,#f5b6d6);
 }
 
 .app{
-width:100%;
-max-width:390px;
-padding:20px;
+width:390px;
+height:844px;
+border-radius:45px;
+overflow:hidden;
+box-shadow:0 50px 120px rgba(0,0,0,0.5);
+position:relative;
+background:linear-gradient(180deg,#6f5de2,#c59df2,#ffc9df);
 }
 
-/* UI */
-.card{
-background:rgba(255,255,255,0.15);
-padding:20px;
-border-radius:20px;
-margin-top:15px;
-backdrop-filter:blur(10px);
+/* FUNDO ESTILO NUVENS */
+.bg{
+position:absolute;
+width:100%;height:100%;
+background:
+radial-gradient(circle at 20% 10%, rgba(255,255,255,0.5), transparent 60%),
+radial-gradient(circle at 80% 20%, rgba(255,255,255,0.4), transparent 60%),
+radial-gradient(circle at 50% 80%, rgba(255,255,255,0.3), transparent 60%);
+filter:blur(10px);
+}
+
+/* LUA */
+.moon{
+position:absolute;
+top:30px;
+left:25px;
+font-size:28px;
+opacity:0.9;
+}
+
+/* CONFIG */
+.gear{
+position:absolute;
+top:30px;
+right:25px;
+font-size:20px;
+cursor:pointer;
+}
+
+.screen{
+position:absolute;
+width:100%;height:100%;
+padding:35px 25px;
+display:none;
+flex-direction:column;
+justify-content:flex-start;
+align-items:center;
+text-align:center;
+color:#fff;
+}
+.active{display:flex}
+
+.logo{
+font-size:18px;
+font-weight:600;
+margin-top:40px;
+margin-bottom:10px;
+}
+
+.title{
+font-size:22px;
+font-weight:600;
+margin-bottom:5px;
+}
+
+.subtitle{
+font-size:14px;
+opacity:0.85;
+margin-bottom:25px;
+}
+
+.avatar{
+width:140px;
+margin:10px 0 20px;
+filter:drop-shadow(0 10px 25px rgba(0,0,0,0.3));
 }
 
 .btn{
-background:#fff;
-color:#333;
-padding:12px;
-border-radius:12px;
+width:100%;
+padding:16px;
+border-radius:25px;
+border:none;
 margin-top:10px;
-text-align:center;
-cursor:pointer;
 font-weight:600;
+font-size:15px;
+cursor:pointer;
 }
 
-.screen{display:none;}
-.active{display:block;}
+.primary{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:white}
+.secondary{background:rgba(255,255,255,0.25);color:white}
 
-.back{
-margin-top:10px;
+.card{
+width:100%;
+padding:14px;
+border-radius:20px;
+margin:6px 0;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(15px);
+}
+
+.chat-box{
+width:100%;
+height:60%;
+overflow:auto;
+margin-bottom:10px;
+}
+
+.msg{
+padding:10px;
+border-radius:15px;
+margin:5px 0;
 background:rgba(255,255,255,0.3);
+text-align:left;
 }
 
-/* chat */
-.chat{height:200px;overflow:auto;margin-bottom:10px;}
-.msg{padding:8px;border-radius:10px;margin:5px 0;}
-.user{background:#fff;color:#000;}
-.bot{background:#ddd;color:#000;}
-</style>
-</head>
+.input{
+width:100%;
+padding:12px;
+border-radius:20px;
+border:none;
+margin-top:10px;
+}
 
-<body>
+.footer{
+position:absolute;
+bottom:15px;
+font-size:12px;
+opacity:0.8;
+}
 
+</style></head><body>
 <div class="app">
+<div class="bg"></div>
+<div class="moon">🌙</div>
+<div class="gear" onclick="go('settings')">⚙️</div><!-- HOME --><div id="home" class="screen active">
+<div class="logo">❤️ Mente Viva</div>
+<div class="title">Bem-vindo</div>
+<div class="subtitle">Estamos aqui para cuidar de você nos bons e nos dias difíceis</div><img class="avatar" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"><div class="card">💭 Como você está se sentindo hoje?</div><button class="btn primary" onclick="go('mood')">Começar</button> <button class="btn secondary" onclick="go('explore')">Explorar primeiro</button> <button class="btn secondary" onclick="go('register')">Sou psicólogo ou psiquiatra</button>
 
-<!-- HOME -->
-<div id="home" class="screen active">
-<h2>Bem-vindo! 💜</h2>
-<p>Estamos aqui para cuidar de você nos bons e nos dias difíceis.</p>
-
-<div style="font-size:60px;text-align:center;">🧘‍♀️</div>
-
-<div class="card">
-<div class="btn" onclick="go('humor')">Começar</div>
-<div class="btn" onclick="go('explorar')">Explorar primeiro</div>
-<div class="btn" onclick="go('cadastro1')">Sou psicólogo ou psiquiatra</div>
+<div class="footer">CVV 188</div>
+</div><!-- MOOD --><div id="mood" class="screen">
+<div class="title">Como você está se sentindo?</div>
+<div class="card" onclick="go('chat')">😢 Triste</div>
+<div class="card" onclick="go('chat')">😰 Ansioso</div>
+<div class="card" onclick="go('chat')">😐 Normal</div>
+<div class="card" onclick="go('chat')">😊 Bem</div>
+<div class="card" onclick="go('chat')">😁 Muito bem</div>
+<div class="btn secondary" onclick="go('diary')">Deseja escrever algo?</div>
+</div><!-- CHAT --><div id="chat" class="screen">
+<div class="title">Mente Viva</div>
+<div class="chat-box" id="chatBox">
+<div class="msg">Oi, estou aqui com você 💜</div>
 </div>
-</div>
-
-<!-- HUMOR -->
-<div id="humor" class="screen">
-<h3>Como você está?</h3>
-
-<div class="card">
-<div class="btn" onclick="startChat('feliz')">😊 Feliz</div>
-<div class="btn" onclick="startChat('triste')">😢 Triste</div>
-<div class="btn" onclick="startChat('ansioso')">😰 Ansioso</div>
-<div class="btn" onclick="startChat('cansado')">😴 Cansado</div>
-<div class="btn" onclick="startChat('estressado')">😤 Estressado</div>
-</div>
-
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
-</div>
-
-<!-- CHAT -->
-<div id="chat" class="screen">
-<div class="chat" id="chatBox"></div>
-<input id="msg" placeholder="Digite..." onkeypress="send(event)">
-<div class="btn back" onclick="go('humor')">⬅ Voltar</div>
-</div>
-
-<!-- EXPLORAR -->
-<div id="explorar" class="screen">
-<h3>Escolha o que deseja explorar</h3>
-
-<div class="card">
-<div class="btn" onclick="go('meditacao')">Meditação guiada</div>
-<div class="btn" onclick="go('frases')">Frases motivacionais</div>
-</div>
-
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
-</div>
-
-<!-- MEDITAÇÃO -->
-<div id="meditacao" class="screen">
-<h3>Meditação</h3>
-
-<div class="card">
-<div class="btn" onclick="med('relaxar')">Relaxar</div>
-<div class="btn" onclick="med('ansiedade')">Ansiedade</div>
-<div class="btn" onclick="med('dormir')">Dormir melhor</div>
-<div class="btn" onclick="med('confianca')">Confiança</div>
-<div class="btn" onclick="med('amor')">Amor próprio</div>
-</div>
-
-<p id="medText"></p>
-
-<audio controls>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-</audio>
-
-<div class="btn back" onclick="go('explorar')">⬅ Voltar</div>
-</div>
-
-<!-- FRASES -->
-<div id="frases" class="screen">
-<h3>Frases motivacionais</h3>
-
-<div class="card">
-<p>
-Você é forte 💪<br>
-Vai passar 🌈<br>
-Respire 🌿<br>
-Você consegue ✨<br>
-Confie em você 💜
-</p>
-</div>
-
-<div class="btn back" onclick="go('explorar')">⬅ Voltar</div>
-</div>
-
-<!-- CADASTRO 1 -->
-<div id="cadastro1" class="screen">
-<h3>Cadastro profissional</h3>
-
-<input placeholder="Nome completo"><br><br>
-<input placeholder="Email"><br><br>
-<input placeholder="CRM / CRP"><br><br>
-<input placeholder="Telefone"><br><br>
-
-<div class="btn" onclick="go('perfil')">Cadastrar</div>
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
-</div>
-
-<!-- PERFIL -->
-<div id="perfil" class="screen">
-<h3>Criar perfil</h3>
-
-<input placeholder="Descrição"><br><br>
-
-<div class="btn" onclick="go('pagamento')">Salvar</div>
-</div>
-
-<!-- PAGAMENTO -->
-<div id="pagamento" class="screen">
-<h3>Ativar perfil</h3>
-
-<div class="card">
-<p>Assinatura por R$7/mês</p>
-<div class="btn">Começar agora</div>
-</div>
-
-<div class="btn back" onclick="go('home')">⬅ Voltar</div>
-</div>
-
-</div>
-
-<script>
-
+<input id="msg" class="input" placeholder="Digite..." onkeypress="send(event)">
+</div><!-- EXPLORE --><div id="explore" class="screen">
+<div class="title">Explorar</div>
+<div class="card">🧘 Meditação guiada</div>
+<div class="card">💬 Frases motivacionais</div>
+</div><!-- DIÁRIO --><div id="diary" class="screen">
+<div class="title">Diário</div>
+<textarea class="input" style="height:200px" placeholder="Escreva..."></textarea>
+<button class="btn primary">Salvar</button>
+</div><!-- SETTINGS --><div id="settings" class="screen">
+<div class="title">Configurações</div>
+<div class="card">Conta e perfil</div>
+<div class="card">Privacidade</div>
+<div class="card">Aparência</div>
+</div></div><script>
 function go(id){
 document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
-function startChat(h){
-go('chat');
-add("bot","Estou aqui com você 💜");
-}
-
-function add(type,text){
+function send(e){
+if(e.key==='Enter'){
+let text=msg.value;
+if(!text) return;
 let div=document.createElement('div');
-div.className="msg "+type;
+div.className='msg';
 div.innerText=text;
 chatBox.appendChild(div);
-}
-
-function send(e){
-if(e.key==="Enter"){
-let v=msg.value;
-add("user",v);
-
+msg.value='';
+chatBox.scrollTop=chatBox.scrollHeight;
 setTimeout(()=>{
-add("bot","Entendo... me conta mais 💜");
+let r=document.createElement('div');
+r.className='msg';
+r.innerText='Estou aqui com você 💜';
+chatBox.appendChild(r);
 },800);
-
-msg.value="";
 }
 }
-
-function med(tipo){
-let textos={
-relaxar:"Respire fundo lentamente...",
-ansiedade:"Inspire 4s... solte 6s...",
-dormir:"Relaxe seu corpo inteiro...",
-confianca:"Você é capaz...",
-amor:"Você merece amor 💜"
-}
-medText.innerText=textos[tipo];
-}
-
-</script>
-
-</body>
+</script></body>
 </html>
