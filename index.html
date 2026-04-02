@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perfeitto Films</title>
-
+  <title>Sara Rocha | Desenvolvedora de Sites</title>
+  <meta name="description" content="Portfólio pessoal de Sara Rocha, desenvolvedora de sites iniciante, criativa e dedicada." />
+  <link rel="icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -21,570 +22,681 @@
     }
 
     body {
-      background: #f7f6f2;
-      color: #1f1f1b;
       font-family: 'Inter', sans-serif;
-      padding: 20px;
+      background: #ffffff;
+      color: #1d1d1d;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .site {
-      max-width: 1120px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("flowers-bg.png") center top / cover no-repeat;
+      opacity: 0.14;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.84);
+      z-index: -1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
       margin: 0 auto;
     }
 
-    .topbar {
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav {
       display: flex;
-      justify-content: center;
       align-items: center;
-      margin-bottom: 18px;
+      justify-content: space-between;
+      padding: 18px 0;
     }
 
     .logo {
-      width: 190px;
-      max-width: 75%;
-      display: block;
-    }
-
-    .hero-card {
-      background: #fdfcf8;
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
-      margin-bottom: 48px;
-    }
-
-    .hero-image-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      min-height: 520px;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.9);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(0,0,0,0.18));
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 22px;
-    }
-
-    .hero-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hero-nav-left,
-    .hero-nav-right {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .hero-pill,
-    .hero-contact {
-      border: 1px solid rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.45);
-      backdrop-filter: blur(8px);
-      color: #2a2a24;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .hero-center {
-      text-align: center;
-      color: #fff;
-      padding: 20px 10px 6px;
-    }
-
-    .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 108px;
-      line-height: 0.9;
-      font-weight: 500;
-      letter-spacing: -1.5px;
-      text-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111;
     }
 
-    .hero-subtitle {
-      max-width: 700px;
-      margin: 18px auto 0;
-      font-size: 15px;
-      line-height: 1.8;
-      color: #f9f8f5;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.18);
-    }
-
-    .hero-cta {
-      display: inline-block;
-      margin-top: 20px;
-      background: rgba(32,32,28,0.82);
-      color: #fff;
-      text-decoration: none;
-      padding: 14px 34px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 500;
-      backdrop-filter: blur(6px);
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 64px;
-      line-height: 1;
-      font-weight: 500;
-      color: #4c4a42;
-      margin-bottom: 26px;
-      letter-spacing: -0.8px;
-    }
-
-    .tabs {
+    .menu {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 26px;
-    }
-
-    .tab-button {
-      border: 1px solid #d7d3c9;
-      background: #fffdf9;
-      color: #565348;
-      padding: 12px 28px;
-      border-radius: 14px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.25s ease;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .tab-button.active,
-    .tab-button:hover {
-      background: #8f907e;
-      color: #fff;
-      border-color: #8f907e;
-    }
-
-    .panel {
-      display: none;
-      animation: fadeUp 0.35s ease;
-      margin-bottom: 54px;
-    }
-
-    .panel.active {
-      display: block;
-    }
-
-    .content-card {
-      background: #9ca08a;
-      border-radius: 24px;
-      padding: 26px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
       gap: 24px;
       align-items: center;
     }
 
-    .content-text {
-      color: #f8f7f2;
+    .menu a {
+      font-size: 0.96rem;
+      color: #333;
+      transition: 0.25s;
     }
 
-    .content-text h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 40px;
-      font-weight: 600;
-      margin-bottom: 12px;
+    .menu a:hover {
+      color: #000;
+      opacity: 0.75;
     }
 
-    .content-text p {
-      font-size: 16px;
-      line-height: 1.9;
-      color: #f6f5ef;
+    .menu-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #111;
     }
 
-    .content-media img,
-    .content-media video {
-      width: 100%;
-      border-radius: 18px;
-      display: block;
-      object-fit: cover;
-      background: #ece8dd;
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 0 40px;
     }
 
-    .content-media img {
-      height: 100%;
-      min-height: 290px;
-    }
-
-    .second-title {
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 62px;
-      line-height: 1;
-      color: #4c4a42;
-      margin: 26px 0 30px;
-    }
-
-    .grid {
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-bottom: 40px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
     }
 
-    .box,
-    .media-box {
-      background: #fffdf9;
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #7d7d7d;
+      margin-bottom: 18px;
     }
 
-    .box.green {
-      background: #9ca08a;
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #444;
+      max-width: 640px;
+      margin-bottom: 26px;
+    }
+
+    .price-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(0,0,0,0.08);
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #111;
+    }
+
+    .btn-primary {
+      background: #111;
       color: #fff;
     }
 
-    .box h4,
-    .media-box h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 600;
-      margin-bottom: 14px;
-      line-height: 1;
+    .btn-primary:hover {
+      background: #2a2a2a;
+      border-color: #2a2a2a;
     }
 
-    .box p,
-    .media-box p {
-      font-size: 15px;
-      line-height: 1.85;
-      color: #4f4c42;
+    .btn-secondary {
+      background: transparent;
+      color: #111;
     }
 
-    .box.green p {
-      color: #f7f6f0;
+    .btn-secondary:hover {
+      background: rgba(0,0,0,0.04);
     }
 
-    .media-box img,
-    .media-box video {
+    .hero-card {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.06);
+    }
+
+    .hero-photo {
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .hero-photo img {
       width: 100%;
-      border-radius: 16px;
-      display: block;
-      margin-top: 14px;
-      background: #ece8dd;
-    }
-
-    .media-box img {
-      aspect-ratio: 4 / 3;
+      height: 520px;
       object-fit: cover;
     }
 
-    .contact-area {
-      text-align: center;
-      background: #fffdf9;
-      border-radius: 24px;
-      padding: 34px 24px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      margin-bottom: 40px;
-    }
-
-    .contact-area p {
-      max-width: 760px;
-      margin: 0 auto 20px;
-      font-size: 16px;
-      line-height: 1.9;
-      color: #504d44;
-    }
-
-    .contact-button {
-      display: inline-block;
-      background: #303028;
-      color: #fff;
-      text-decoration: none;
-      padding: 15px 34px;
-      border-radius: 999px;
-      font-size: 15px;
-      margin-top: 8px;
-    }
-
-    .contact-mini {
-      margin-top: 24px;
+    .mini-info {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      text-align: left;
+      gap: 12px;
     }
 
-    .contact-mini div {
-      background: #f6f3eb;
-      border-radius: 16px;
-      padding: 16px;
-      color: #555144;
-      font-size: 14px;
-      line-height: 1.7;
+    .mini-box {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 14px;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .mini-box small {
+      display: block;
+      color: #7b7b7b;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    @media (max-width: 900px) {
-      .hero-title {
-        font-size: 78px;
-      }
+    .mini-box strong {
+      font-size: 1rem;
+      color: #171717;
+    }
 
-      .content-card,
-      .grid {
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+
+    .section-title span {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8b8b8b;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: #111;
+      line-height: 1;
+    }
+
+    .about-grid,
+    .services-grid,
+    .projects-grid,
+    .contact-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      color: #111;
+    }
+
+    .card p {
+      color: #444;
+      font-size: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-item h3 {
+      font-size: 1.4rem;
+    }
+
+    .service-item p {
+      margin-top: 10px;
+    }
+
+    .project-card {
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-top small {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .project-top h3 {
+      font-size: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .project-bottom {
+      margin-top: 24px;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .contact-link {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fff;
+      transition: 0.25s;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: 0.8s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .services-grid,
+      .projects-grid {
         grid-template-columns: 1fr;
       }
 
-      .content-media img {
-        min-height: 240px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding: 12px;
+      .hero {
+        min-height: auto;
+        padding-top: 40px;
       }
 
-      .hero-card {
-        padding: 12px;
+      .hero-photo img {
+        height: 420px;
+      }
+
+      .menu {
+        position: absolute;
+        top: 76px;
+        right: 4%;
+        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(0,0,0,0.08);
         border-radius: 22px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 210px;
+        display: none;
       }
 
-      .hero-image-wrap {
-        min-height: 460px;
-        border-radius: 18px;
+      .menu.active {
+        display: flex;
       }
 
-      .hero-image {
-        height: 460px;
+      .menu-btn {
+        display: block;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .hero h1 {
+        font-size: 3.1rem;
       }
 
-      .hero-nav {
-        justify-content: center;
+      .card,
+      .hero-card {
+        border-radius: 22px;
+        padding: 20px;
       }
 
-      .hero-nav-left,
-      .hero-nav-right {
-        justify-content: center;
-      }
-
-      .hero-title {
-        font-size: 56px;
-        line-height: 0.92;
-      }
-
-      .hero-subtitle {
-        font-size: 14px;
-        line-height: 1.7;
-      }
-
-      .section-title,
-      .second-title {
-        font-size: 42px;
-      }
-
-      .content-text h3,
-      .box h4,
-      .media-box h4 {
-        font-size: 30px;
-      }
-
-      .contact-mini {
+      .mini-info {
         grid-template-columns: 1fr;
       }
 
-      .tab-button {
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
         width: 100%;
-        max-width: 240px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="site">
-    <div class="topbar">
-      <img src="./assets/logo.png" alt="Perfeitto Films" class="logo">
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">Sara Rocha</a>
+
+      <nav class="menu" id="menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
     </div>
+  </header>
 
-    <section class="hero-card">
-      <div class="hero-image-wrap">
-        <img src="./assets/imagem.png" alt="Perfeitto Films" class="hero-image">
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-up">
+          <div class="eyebrow">Portfólio pessoal</div>
+          <h1>Desenvolvedora de sites iniciante, criativa e dedicada.</h1>
+          <p>
+            Estou no começo da minha jornada no desenvolvimento de sites, mas isso não diminui a qualidade
+            do meu trabalho. Pelo contrário. Cada projeto que faço recebe atenção real, cuidado com os detalhes
+            e vontade de entregar algo bonito, funcional e feito com carinho.
+          </p>
 
-        <div class="hero-overlay">
-          <div class="hero-nav">
-            <div class="hero-nav-left">
-              <a href="#" class="hero-pill" onclick="showPanel('sobre'); return false;">Sobre</a>
-              <a href="#" class="hero-pill" onclick="showPanel('emocao'); return false;">Emoção</a>
-              <a href="#" class="hero-pill" onclick="showPanel('qualidade'); return false;">Qualidade</a>
-            </div>
-
-            <div class="hero-nav-right">
-              <a href="https://wa.me/5546991236675" target="_blank" class="hero-contact">Contato</a>
-            </div>
+          <div class="price-box">
+            <span>Projetos entre</span>
+            <strong>R$300 e R$1.500</strong>
           </div>
 
-          <div class="hero-center">
-            <h1 class="hero-title">Perfeitto Films</h1>
-            <p class="hero-subtitle">
-              Transformamos momentos em filmes elegantes, emocionantes e inesquecíveis, com um olhar cinematográfico pensado para eternizar cada detalhe.
+          <div class="actions">
+            <a href="#contato" class="btn btn-primary">Entrar em contato</a>
+            <a href="#projetos" class="btn btn-secondary">Ver projetos</a>
+          </div>
+        </div>
+
+        <div class="hero-card fade-up">
+          <div class="hero-photo">
+            <img src="profile.webp" alt="Foto de Sara Rocha">
+          </div>
+
+          <div class="mini-info">
+            <div class="mini-box">
+              <small>Foco</small>
+              <strong>Sites bonitos e funcionais</strong>
+            </div>
+            <div class="mini-box">
+              <small>Estilo</small>
+              <strong>Elegante, leve e moderno</strong>
+            </div>
+            <div class="mini-box">
+              <small>Atendimento</small>
+              <strong>Próximo e dedicado</strong>
+            </div>
+            <div class="mini-box">
+              <small>Valores</small>
+              <strong>Acessíveis no início</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="section-title fade-up">
+          <span>Sobre mim</span>
+          <h2>Seu projeto tratado como peça única</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="card fade-up">
+            <h3>Quem eu sou</h3>
+            <p>
+              Sou uma desenvolvedora de sites iniciante, mas muito comprometida com evolução, estética e resultado.
+              Mesmo no começo da minha trajetória, levo cada trabalho a sério e busco criar experiências visuais
+              bonitas, organizadas e agradáveis de navegar.
             </p>
-            <a href="https://wa.me/5546991236675" target="_blank" class="hero-cta">Entrar em contato</a>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Como eu trabalho</h3>
+            <p>
+              Eu escuto a ideia com atenção, organizo a estrutura do site, penso no visual, nas cores, nos detalhes
+              e monto tudo com dedicação. Meus valores são mais acessíveis porque estou construindo meu portfólio,
+              não porque entrego menos. Entrego com capricho, esforço e presença em cada etapa.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <h2 class="section-title">Por que a Perfeitto Films<br>não é apenas uma produtora</h2>
+    <section id="servicos">
+      <div class="container">
+        <div class="section-title fade-up">
+          <span>Serviços</span>
+          <h2>O que posso criar para você</h2>
+        </div>
 
-    <div class="tabs">
-      <button class="tab-button active" data-target="sobre" onclick="showPanel('sobre')">História</button>
-      <button class="tab-button" data-target="emocao" onclick="showPanel('emocao')">Emoção</button>
-      <button class="tab-button" data-target="qualidade" onclick="showPanel('qualidade')">Qualidade</button>
+        <div class="services-grid">
+          <div class="card service-item fade-up">
+            <h3>Sites pessoais</h3>
+            <p>
+              Páginas elegantes para apresentar você, seu trabalho, seus serviços e sua identidade visual de forma profissional.
+            </p>
+          </div>
+
+          <div class="card service-item fade-up">
+            <h3>Sites para marcas</h3>
+            <p>
+              Estruturas pensadas para lojas, negócios, estúdios, criadores e pequenas empresas que querem presença online bonita.
+            </p>
+          </div>
+
+          <div class="card service-item fade-up">
+            <h3>Ideias para marcas</h3>
+            <p>
+              Além do site, também desenvolvo ideias visuais e criativas para nomes, apresentação e imagem da sua marca.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <div class="section-title fade-up">
+          <span>Projetos</span>
+          <h2>Modelos e criações em desenvolvimento</h2>
+        </div>
+
+        <div class="projects-grid">
+          <div class="card project-card fade-up">
+            <div class="project-top">
+              <small>Projeto 01</small>
+              <h3>Loja de roupas fictícia</h3>
+            </div>
+            <div class="project-bottom">
+              Este projeto é apenas uma loja fictícia criada para demonstração de layout, design e funcionalidade de um site moderno.
+              <br><br>
+              <a href="https://drive.google.com/file/d/1hrUkhlL3I6FCXGvgpy0_boty61Zsqydm/view?usp=drivesdk" target="_blank" class="btn btn-secondary">Ver projeto</a>
+            </div>
+          </div>
+
+          <div class="card project-card fade-up">
+            <div class="project-top">
+              <small>Projeto 02</small>
+              <h3>Site para marca feminina</h3>
+            </div>
+            <div class="project-bottom">
+              Visual leve e refinado, com foco em identidade visual, presença digital e elegância.
+            </div>
+          </div>
+
+          <div class="card project-card fade-up">
+            <div class="project-top">
+              <small>Projeto 03</small>
+              <h3>Landing page de divulgação</h3>
+            </div>
+            <div class="project-bottom">
+              Página criada para destacar serviços, organizar informações e incentivar o primeiro contato.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-title fade-up">
+          <span>Contato</span>
+          <h2>Vamos transformar sua ideia em algo bonito</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card fade-up">
+            <h3>Fale comigo</h3>
+            <p>
+              Se você procura alguém que vai realmente se esforçar para entender sua ideia e transformar isso
+              em um site bonito e funcional, você acabou de encontrar. Estou sempre evoluindo e dando o meu melhor.
+            </p>
+
+            <div class="contact-links">
+              <a class="contact-link" href="mailto:saradarocha56@gmail.com">saradarocha56@gmail.com</a>
+              <a class="contact-link" href="https://wa.me/5546991201692" target="_blank">WhatsApp: +55 46 99120-1692</a>
+              <a class="contact-link" href="https://instagram.com/sarasdearmemory" target="_blank">Instagram: @sarasdearmemory</a>
+            </div>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Faixa de valores</h3>
+            <p>
+              Como estou no início, meus projetos costumam variar entre <strong>R$300 e R$1.500</strong>,
+              dependendo da complexidade. Isso permite que eu ofereça um valor mais acessível sem abrir mão
+              do cuidado com o resultado final.
+            </p>
+            <br>
+            <p>
+              Muitos profissionais cobram muito mais, mas preço alto não é a única medida de qualidade.
+              O que eu entrego vem com atenção, dedicação e vontade real de fazer um trabalho bonito.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Sara Rocha. Todos os direitos reservados.
     </div>
-
-    <section id="sobre" class="panel active">
-      <div class="content-card">
-        <div class="content-text">
-          <h3>História Perfeitto Films</h3>
-          <p>
-            A Perfeitto Films nasceu do desejo de transformar momentos reais em memórias visuais que continuem vivas com o passar do tempo. Com mais de 15 anos de experiência, nosso olhar foi sendo moldado entre emoções verdadeiras, detalhes discretos e histórias que merecem ser lembradas com beleza. Cada projeto recebe atenção completa, porque acreditamos que filmar não é apenas registrar, mas interpretar o que torna aquele instante único. Nossa linguagem mistura sensibilidade, elegância e presença, criando filmes que carregam mais do que imagem: carregam sentimento.
-          </p>
-        </div>
-
-        <div class="content-media">
-          <img src="./assets/imagem.png" alt="Imagem principal">
-        </div>
-      </div>
-    </section>
-
-    <section id="emocao" class="panel">
-      <div class="content-card">
-        <div class="content-text">
-          <h3>Emoção em cada detalhe</h3>
-          <p>
-            O que torna um filme inesquecível nem sempre está no óbvio. Muitas vezes está no olhar trocado em silêncio, no abraço que dura um segundo a mais, no gesto que quase passa despercebido. A Perfeitto Films constrói narrativas que valorizam essas pequenas grandezas. Nosso trabalho é captar a atmosfera do momento e devolver isso em forma de filme, com delicadeza, ritmo e profundidade emocional. Não buscamos apenas mostrar o que aconteceu. Buscamos fazer você sentir tudo de novo.
-          </p>
-        </div>
-
-        <div class="content-media">
-          <img src="./assets/imagem.png" alt="Emoção">
-        </div>
-      </div>
-    </section>
-
-    <section id="qualidade" class="panel">
-      <div class="content-card">
-        <div class="content-text">
-          <h3>Qualidade que permanece</h3>
-          <p>
-            Cada produção é pensada com rigor visual, acabamento refinado e intenção em cada escolha. Da captação à edição final, trabalhamos para entregar filmes elegantes, atemporais e bem construídos. Qualidade, para nós, não é excesso. É equilíbrio. É saber onde colocar luz, tempo, movimento e trilha para que o resultado final tenha identidade e permanência. O objetivo é simples e exigente ao mesmo tempo: fazer com que o seu momento continue bonito hoje, amanhã e muitos anos depois.
-          </p>
-        </div>
-
-        <div class="content-media">
-          <img src="./assets/imagem.png" alt="Qualidade">
-        </div>
-      </div>
-    </section>
-
-    <h2 class="second-title">Perfeitto Films: o olhar certo<br>para cada momento</h2>
-
-    <section class="grid">
-      <div class="box">
-        <h4>15 anos</h4>
-        <p>
-          Produções delicadas, cheias de identidade e emoção, valorizando cada detalhe dessa fase única com sensibilidade cinematográfica.
-        </p>
-      </div>
-
-      <div class="media-box">
-        <h4>Casamentos</h4>
-        <p>
-          Filmes que transformam promessas, olhares e sentimentos em memórias visuais vivas e elegantes.
-        </p>
-        <img src="./assets/imagem.png" alt="Casamentos">
-      </div>
-
-      <div class="media-box">
-        <h4>Todo tipo de evento</h4>
-        <p>
-          Cobertura de eventos com presença, estética refinada e uma narrativa visual que valoriza a experiência.
-        </p>
-        <img src="./assets/imagem.png" alt="Eventos">
-      </div>
-
-      <div class="box green">
-        <h4>Cooper Tradição</h4>
-        <p>
-          Projetos que unem tradição, força de marca e uma linguagem visual limpa, sofisticada e memorável.
-        </p>
-      </div>
-    </section>
-
-    <section class="contact-area">
-      <h2 class="section-title" style="margin-bottom: 18px;">Contato</h2>
-      <p>
-        Se você deseja transformar seu momento em algo elegante, emocionante e inesquecível, fale com a Perfeitto Films. Será um prazer criar um filme à altura da sua história.
-      </p>
-
-      <a href="https://wa.me/5546991236675" target="_blank" class="contact-button">Falar no WhatsApp</a>
-
-      <div class="contact-mini">
-        <div>Atendimento personalizado para cada projeto, com atenção ao estilo e à proposta de cada história.</div>
-        <div>Produção cinematográfica com sensibilidade visual, ritmo elegante e acabamento profissional.</div>
-        <div>Experiência em eventos especiais, sociais e produções que pedem presença e sofisticação.</div>
-        <div>Entrega pensada para emocionar hoje e permanecer bonita no futuro.</div>
-      </div>
-    </section>
-  </div>
+  </footer>
 
   <script>
-    function showPanel(id) {
-      const panels = document.querySelectorAll('.panel');
-      const buttons = document.querySelectorAll('.tab-button');
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
 
-      panels.forEach(panel => panel.classList.remove('active'));
-      buttons.forEach(button => button.classList.remove('active'));
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
 
-      document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
+    });
 
-      const activeButton = document.querySelector(`.tab-button[data-target="${id}"]`);
-      if (activeButton) {
-        activeButton.classList.add('active');
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
 
-      const title = document.querySelector('.section-title');
-      if (title) {
-        title.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
